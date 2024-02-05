@@ -3,7 +3,7 @@ Underworld's Pursuit is a side-scrolling game about being chased by demons in th
 
 ## Setup
 <ul>
-  <li>Unity version: TBD</li>
+  <li>Unity version: 2022.3.17f1</li>
 </ul>
 
 ## Credits
