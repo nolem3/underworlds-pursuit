@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private Transform firePoint;
-    [SerializeField] private GameObject prefab;
+    [SerializeField] private GameObject bullet;
     private Vector3 mousePos;
     private Vector3 aimPos;
     private Quaternion rot;
     private float cooldown;
+
+    private float projectileSpeed = 7.0f;
 
     void Start()
     {
@@ -18,43 +21,24 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
-        // firePoint.LookAt(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector3.forward);
-        // firePoint.LookAt();
-
-        /*Quaternion rotation = Quaternion.LookRotation(
-            Camera.main.ScreenToWorldPoint(Input.mousePosition) - firePoint.position,
-            firePoint.TransformDirection(Vector3.up)
-        );
-        firePoint.rotation = new Quaternion(0, 0, rotation.z, rotation.w);*/
-        /*rot = Quaternion.LookRotation(Camera.main.WorldToScreenPoint(Input.mousePosition) - firePoint.position);
-        rot.x = 0;
-        rot.y = 0;
-        firePoint.rotation = rot;*/
-
-        /*mousePos = Camera.main.WorldToScreenPoint(Input.mousePosition);
-        aimPos = mousePos;
-        aimPos.z = firePoint.position.z;
-        firePoint.LookAt(aimPos);
-        firePoint.rotation = Quaternion.Euler(0, 0, firePoint.rotation.z);*/
-
-        /*Vector3 shootDirection;
-        shootDirection = Input.mousePosition;
-        shootDirection.z = 0.0f;
-        shootDirection = Camera.main.ScreenToWorldPoint(shootDirection);
-        shootDirection = shootDirection - firePoint.position;
-        firePoint.rotation = Quaternion.Euler(shootDirection);*/
-
         cooldown -= Time.deltaTime;
         if (Input.GetButton("Fire1") && cooldown <= 0)
         {
-            Instantiate(prefab, firePoint.position, firePoint.rotation);
+            shootGun();
             cooldown = 0.2f;
         }
     }
-
-    private void FixedUpdate()
+    private void shootGun()
     {
-        Debug.Log("Mouse pos " + Camera.main.ScreenToWorldPoint(Input.mousePosition) + " ; firePointPos " + firePoint.position + " ; direction:" + (Camera.main.ScreenToWorldPoint(Input.mousePosition) - firePoint.position));
-        Utils.LookAt2D(firePoint, Camera.main.ScreenToWorldPoint(Input.mousePosition), true);
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePosition.z = 0f;
+
+        GameObject projectile = Instantiate(bullet, transform.position, quaternion.identity);
+        Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
+        if(projectileRb != null)
+        {
+            Vector2 shootDirection = (mousePosition - transform.position).normalized;
+            projectileRb.velocity = new Vector2(shootDirection.x, shootDirection.y) * projectileSpeed;
+        }
     }
 }
