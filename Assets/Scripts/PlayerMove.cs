@@ -10,12 +10,15 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float jumpForce = 12;
     [SerializeField] private float doubleJumpForce = 8;
     [SerializeField] private float dropForce = 6;
+    [SerializeField] private float dashForce = 5;
     private Rigidbody2D rb;
     private bool jumpInput;
     private float moveInput;
     private bool grounded;
     private bool doubleJumped;
     private bool dropped;
+    private bool dashInput;
+    private bool canDash;
     [SerializeField] private GameObject droppedPrefab;
     [SerializeField] private GameObject doubleJumpPrefab;
     [SerializeField] private GameObject missilePrefab;
@@ -29,6 +32,7 @@ public class PlayerMove : MonoBehaviour
     {
         MoveCheck();
         JumpCheck();
+        dashCheck();
         // Drop Ability 
         /* if (Input.GetKeyDown(KeyCode.S) && !grounded && !dropped)
         {
@@ -70,12 +74,42 @@ public class PlayerMove : MonoBehaviour
     public void SetGrounded(bool given)
     {
         grounded = given;
-        if (!given) doubleJumped = given;
+        if (!given)
+        {
+            doubleJumped = given;
+            canDash = !given;
+        } 
     }
 
     public float CurrentMoveInput()
     {
         return moveInput;
+    }
+
+    //dash in straight line
+    private void dashCheck()
+    {
+        Debug.Log("dash initiated");
+        dashInput = Input.GetKeyDown("c");
+        if (!dashInput){
+            return;
+        }
+        if (canDash)
+        {
+            canDash = false;
+            Vector2 movementDirection = new Vector2(moveInput, 0f).normalized;
+            rb.AddForce(movementDirection * dashForce, ForceMode2D.Impulse);
+            StartCoroutine("DisableGravity");
+        }
+    }
+
+    IEnumerator DisableGravity()
+    {
+        rb.gravityScale = 0f;
+
+        yield return new WaitForSeconds(.5f);
+
+        rb.gravityScale = 2f;
     }
 }
  
