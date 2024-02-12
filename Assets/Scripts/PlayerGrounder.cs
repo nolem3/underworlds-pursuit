@@ -6,6 +6,14 @@ public class PlayerGrounder : MonoBehaviour
 {
     [SerializeField] private PlayerMove playerMove;
 
+    private void Start()
+    {
+        if (playerMove == null)
+        {
+            playerMove = GameObject.FindFirstObjectByType<PlayerMove>();
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Environment")) playerMove.SetGrounded(true);

@@ -5,19 +5,17 @@ using UnityEngine;
 public class BossWalk : MonoBehaviour
 {
 
-    [SerializeField]
-    private float walkSpeed;
+    [SerializeField] private Vector2 walkVelocity = new Vector2(1, 0);
 
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(transform.position.x + walkSpeed, transform.position.y, transform.position.z);
+        transform.Translate(walkVelocity * Time.deltaTime);
+        // transform.position = new Vector3(transform.position.x + walkSpeed, transform.position.y, transform.position.z) * Time.deltaTime;
         //Debug.Log(transform.position.x + walkSpeed);
     }
 }
