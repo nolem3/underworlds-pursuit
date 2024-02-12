@@ -72,5 +72,10 @@ public class PlayerMove : MonoBehaviour
         grounded = given;
         if (!given) doubleJumped = given;
     }
+
+    public float CurrentMoveInput()
+    {
+        return moveInput;
+    }
 }
  

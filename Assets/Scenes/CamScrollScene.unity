@@ -1741,7 +1741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60f818e7e7313442b96f448dd3971aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 5
   jumpForce: 10
   doubleJumpForce: 10
   dropForce: 6
@@ -2110,6 +2110,10 @@ PrefabInstance:
     - target: {fileID: 1344291763012965078, guid: 7b9de206de59a9646a8313d5f81e801b, type: 3}
       propertyPath: m_Name
       value: Dummy Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 5401315380368163866, guid: 7b9de206de59a9646a8313d5f81e801b, type: 3}
+      propertyPath: walkVelocity.x
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5685186183939393424, guid: 7b9de206de59a9646a8313d5f81e801b, type: 3}
       propertyPath: m_LocalPosition.x
