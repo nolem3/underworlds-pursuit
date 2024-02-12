@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2585877570824705926}
   - component: {fileID: 7888773364563863386}
   - component: {fileID: 4538062988385296222}
+  - component: {fileID: -1775583876225264955}
   m_Layer: 0
   m_Name: PlayerShot
   m_TagString: Untagged
@@ -148,3 +149,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-1775583876225264955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6371860238775423487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac59163dc3bd3dd4484e9ae9e9a2e7e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalCollisions: 1
+  triggerCollisions: 1
+  tagsToDamage:
+  - Boss
+  layersToDamage: []
+  healthChange: -1
+  destroyOnDamage: 1

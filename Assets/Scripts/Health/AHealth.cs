@@ -5,6 +5,7 @@ using UnityEngine;
 public class AHealth : MonoBehaviour
 {
     [SerializeField] private int maxHealth;
+    [SerializeField] private List<AHealthTracker> healthTrackers = new List<AHealthTracker>();
     private int health;
 
     private void Start()
@@ -15,6 +16,7 @@ public class AHealth : MonoBehaviour
     public void ChangeHealth(int change)
     {
         health = Mathf.Clamp(health + change, 0, maxHealth); 
+        foreach (AHealthTracker tracker in healthTrackers) tracker.HealthChanged(this);
     }
 
     public int GetHealth()

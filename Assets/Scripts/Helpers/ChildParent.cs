@@ -43,8 +43,6 @@ public class ChildParent : MonoBehaviour
 
     private void TryToCollect(Transform given)
     {
-        Debug.Log("Trying to collect");
-        
         if (dontCollectInputtingPlayer)
         {
             PlayerMove playerMove = given.GetComponent<PlayerMove>();
@@ -67,7 +65,6 @@ public class ChildParent : MonoBehaviour
         {
             if (given.CompareTag(tag))
             {
-                Debug.Log("collected!");
                 given.SetParent(this.gameObject.transform);
                 collectedChildren.Add(given);
                 return;
@@ -77,19 +74,16 @@ public class ChildParent : MonoBehaviour
         {
             if (given.gameObject.layer == LayerMask.NameToLayer(layer))
             {
-                Debug.Log("collected!");
                 given.SetParent(this.gameObject.transform);
                 collectedChildren.Add(given);
                 return;
             }
         }
-        Debug.Log("NOT in layers nor tags");
     }
 
     private void TryToUncollect(Transform given)
     {
         if (!collectedChildren.Contains(given)) return;
-        Debug.Log("Trying to uncollect");
         if (dontCollectInputtingPlayer)
         {
             PlayerMove playerMove = given.GetComponent<PlayerMove>();
@@ -107,7 +101,6 @@ public class ChildParent : MonoBehaviour
         {
             if (given.gameObject.CompareTag(tag))
             {
-                Debug.Log("uncollected!");
                 given.SetParent(null);
                 collectedChildren.Remove(given);
                 return;
@@ -117,13 +110,11 @@ public class ChildParent : MonoBehaviour
         {
             if (given.gameObject.layer == LayerMask.NameToLayer(layer))
             {
-                Debug.Log("uncollected!");
                 given.SetParent(null);
                 collectedChildren.Remove(given);
                 return;
             }
         }
-        Debug.Log("NOT in layers nor tags");
     }
 
     private void OnDestroy()
