@@ -10,7 +10,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float jumpForce = 12;
     [SerializeField] private float doubleJumpForce = 8;
     [SerializeField] private float dropForce = 6;
-    [SerializeField] private float dashForce = 5;
+    [SerializeField] private float dashDistance = 5;
     private Rigidbody2D rb;
     private bool jumpInput;
     private float moveInput;
@@ -19,6 +19,7 @@ public class PlayerMove : MonoBehaviour
     private bool dropped;
     private bool dashInput;
     private bool canDash;
+    private Vector3 toDashTo;
     [SerializeField] private GameObject droppedPrefab;
     [SerializeField] private GameObject doubleJumpPrefab;
     [SerializeField] private GameObject missilePrefab;
@@ -33,6 +34,7 @@ public class PlayerMove : MonoBehaviour
         MoveCheck();
         JumpCheck();
         dashCheck();
+
         // Drop Ability 
         /* if (Input.GetKeyDown(KeyCode.S) && !grounded && !dropped)
         {
@@ -89,27 +91,33 @@ public class PlayerMove : MonoBehaviour
     //dash in straight line
     private void dashCheck()
     {
-        Debug.Log("dash initiated");
+        
         dashInput = Input.GetKeyDown("c");
         if (!dashInput){
             return;
         }
+        Debug.Log("dash initiated");
+        //if can dash set a target position to dash to. set can dash to false
+        //check if target position has been hit, if it has set can dash to true. 
+        //if target positon hasn't been hit transform.Translate(moveDirection * Time.deltaTime)
+        Vector3 movementDirection = new Vector3(moveInput, 0f, 0f).normalized;
         if (canDash)
         {
             canDash = false;
-            Vector2 movementDirection = new Vector2(moveInput, 0f).normalized;
-            rb.AddForce(movementDirection * dashForce, ForceMode2D.Impulse);
-            StartCoroutine("DisableGravity");
+            toDashTo = transform.position - (dashDistance * movementDirection);
+            Debug.Log(toDashTo);
+            Debug.Log(transform.position);
         }
-    }
-
-    IEnumerator DisableGravity()
-    {
-        rb.gravityScale = 0f;
-
-        yield return new WaitForSeconds(.5f);
-
-        rb.gravityScale = 2f;
+        Debug.Log(transform.position != toDashTo);
+        if(toDashTo != transform.position)
+        {
+            Debug.Log("In translate");
+            transform.Translate(movementDirection * Time.deltaTime);
+        }
+        else if (toDashTo == transform.position)
+        {
+            canDash = true;
+        }
     }
 }
  
