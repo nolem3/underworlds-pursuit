@@ -10,16 +10,19 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float jumpForce = 12;
     [SerializeField] private float doubleJumpForce = 8;
     [SerializeField] private float dropForce = 6;
-    [SerializeField] private float dashDistance = 5;
+    [SerializeField] private float dashDistance = 2;
+    [SerializeField] private float dashSpeed = 5;
     private Rigidbody2D rb;
     private bool jumpInput;
-    private float moveInput;
     private bool grounded;
     private bool doubleJumped;
     private bool dropped;
     private bool dashInput;
-    private bool canDash;
+    private bool dashOver = true;
+    private bool canDash = true;
     private Vector3 toDashTo;
+    private float moveInputX;
+    private Vector3 movementDirection = new Vector3(-1.0f, 0f, 0f).normalized;
     [SerializeField] private GameObject droppedPrefab;
     [SerializeField] private GameObject doubleJumpPrefab;
     [SerializeField] private GameObject missilePrefab;
@@ -31,6 +34,7 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
+        moveInputX = Input.GetAxisRaw("Horizontal");
         MoveCheck();
         JumpCheck();
         dashCheck();
@@ -47,8 +51,7 @@ public class PlayerMove : MonoBehaviour
 
     private void MoveCheck()
     {
-        moveInput = Input.GetAxisRaw("Horizontal");
-        transform.Translate(moveInput * moveSpeed * Time.deltaTime * transform.right);
+        transform.Translate(moveInputX * moveSpeed * Time.deltaTime * transform.right);
     }
 
     private void JumpCheck()
@@ -79,42 +82,53 @@ public class PlayerMove : MonoBehaviour
         if (!given)
         {
             doubleJumped = given;
-            canDash = !given;
         } 
     }
 
     public float CurrentMoveInput()
     {
-        return moveInput;
+        return moveInputX;
     }
 
     //dash in straight line
     private void dashCheck()
     {
-        
-        dashInput = Input.GetKeyDown("c");
-        if (!dashInput){
+        Vector3 direction = new Vector3(moveInputX, 0f, 0f).normalized;
+        if(direction != new Vector3(0f, 0f, 0f).normalized)
+        {
+            movementDirection = new Vector3(moveInputX, 0f, 0f).normalized;
+        }
+        dashInput = Input.GetKeyDown(KeyCode.C);
+
+        if (!dashInput && canDash){
             return;
         }
-        Debug.Log("dash initiated");
         //if can dash set a target position to dash to. set can dash to false
-        //check if target position has been hit, if it has set can dash to true. 
-        //if target positon hasn't been hit transform.Translate(moveDirection * Time.deltaTime)
-        Vector3 movementDirection = new Vector3(moveInput, 0f, 0f).normalized;
-        if (canDash)
+        //check if target position has been hit, if it has set can dash to true.
+        // when can you dash? if not dashed since hitting the ground or dash being over. 
+        // standing still on a platform, dashing while on a platform can't dash if(!dashed && grounded) set dashed to true and to dash to
+        // in the air can dash, can't dash until grounded if(!dashed && !grounded) set dashed to true 
+        //when is the dash over? when the player hits the target position
+        if(canDash)
         {
+            dashOver = false;
             canDash = false;
-            toDashTo = transform.position - (dashDistance * movementDirection);
-            Debug.Log(toDashTo);
-            Debug.Log(transform.position);
+
+            rb.gravityScale = 0f;
+            toDashTo = transform.position + (dashDistance * movementDirection);
         }
-        Debug.Log(transform.position != toDashTo);
-        if(toDashTo != transform.position)
+        else if(!dashOver)
         {
-            Debug.Log("In translate");
-            transform.Translate(movementDirection * Time.deltaTime);
+            Debug.Log(transform.position + " Position");
+            Debug.Log(toDashTo + " To dash to");
+            transform.position = Vector3.MoveTowards(transform.position, toDashTo, dashSpeed * Time.deltaTime);
+            if(Vector3.Distance(toDashTo, transform.position) < .01f)
+            {
+                rb.gravityScale = 2.0f;
+                dashOver = true;
+            }
         }
-        else if (toDashTo == transform.position)
+        else if(grounded && dashOver)
         {
             canDash = true;
         }

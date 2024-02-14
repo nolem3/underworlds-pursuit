@@ -8071,6 +8071,8 @@ MonoBehaviour:
   jumpForce: 10
   doubleJumpForce: 10
   dropForce: 6
+  dashDistance: 2
+  dashSpeed: 7
   droppedPrefab: {fileID: 3677861665036064774, guid: 2ba2a5ef1d735874b8a273ce6df8b723, type: 3}
   doubleJumpPrefab: {fileID: 3856115914339639973, guid: ee28455a5d41842458ae5c9db135b1ac, type: 3}
   missilePrefab: {fileID: 4104287305709528719, guid: 2a61ef6ca2b69fd4cb77205188f7e127, type: 3}
