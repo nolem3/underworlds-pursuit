@@ -7,6 +7,7 @@ public class AHealth : MonoBehaviour
     [SerializeField] private int maxHealth;
     [SerializeField] private List<AHealthTracker> healthTrackers = new List<AHealthTracker>();
     private int health;
+    private float healthRatio;
 
     private void Start()
     {
@@ -15,7 +16,8 @@ public class AHealth : MonoBehaviour
 
     public void ChangeHealth(int change)
     {
-        health = Mathf.Clamp(health + change, 0, maxHealth); 
+        health = Mathf.Clamp(health + change, 0, maxHealth);
+        healthRatio = health / maxHealth;
         foreach (AHealthTracker tracker in healthTrackers) tracker.HealthChanged(this);
     }
 
@@ -27,5 +29,10 @@ public class AHealth : MonoBehaviour
     public int GetMaxHealth()
     {
         return maxHealth;
+    }
+
+    public float GetHealthRatio()
+    {
+        return healthRatio;
     }
 }

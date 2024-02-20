@@ -21,7 +21,7 @@ public class DamageOnTouch : MonoBehaviour
         if (triggerCollisions) TryToDamage(other.gameObject);
     }
 
-    private void TryToDamage(GameObject otherObject)
+    private void TryToDamage(GameObject otherObject) 
     {
         if (tagsToDamage.Contains(otherObject.tag) || layersToDamage.Contains(LayerMask.LayerToName(otherObject.layer)))
         {
