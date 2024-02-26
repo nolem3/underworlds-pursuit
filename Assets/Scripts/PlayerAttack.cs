@@ -70,6 +70,6 @@ public class PlayerAttack : MonoBehaviour
         {
             projectileRb.velocity = new Vector2(aimDirection.x, aimDirection.y) * projectileSpeed;
         }
-        Instantiate(shootEffect, transform.position, transform.rotation);
+        if (shootEffect != null) Instantiate(shootEffect, transform.position, transform.rotation);
     }
 }

@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 1875331723286777443}
   - component: {fileID: 216286489800768667}
   - component: {fileID: 3637342913138869906}
+  - component: {fileID: 2637279664027927417}
+  - component: {fileID: -242117736636434960}
   - component: {fileID: 882960830603893583}
   - component: {fileID: 180574192437992746}
-  - component: {fileID: 7246270371518812573}
-  - component: {fileID: -242117736636434960}
   m_Layer: 6
   m_Name: Platform
   m_TagString: Ground
@@ -102,6 +102,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDir: {x: -0.7, y: 0}
+--- !u!114 &2637279664027927417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4863422508003031137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ffec0b4189166f4a86af440b8bc3758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  breakPrefab: {fileID: 4863422508003031137, guid: 2ff236ce0fd0e4948a31c975768fd722, type: 3}
+  xPosNegativeCausesBreak: 1
+  xPosMin: -8
+  normalCollisions: 1
+  triggerCollisions: 1
+  tagsToBreak: []
+  layersToBreak:
+  - Projectiles
+--- !u!114 &-242117736636434960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4863422508003031137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 475bcf6350e859a418182adea1088461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalCollisions: 1
+  triggerCollisions: 1
+  tagsToCollect:
+  - Player
+  layersToCollect: []
+  dontCollectInputtingPlayer: 1
 --- !u!61 &882960830603893583
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -174,37 +212,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7246270371518812573
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4863422508003031137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9585e0ee05bd7fd428c0c4fe634b9283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  seconds: 5
-  prefab: {fileID: 4863422508003031137, guid: 2ff236ce0fd0e4948a31c975768fd722, type: 3}
-  destroyAfterSpawn: 1
-  randomRangeSeconds: 0
---- !u!114 &-242117736636434960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4863422508003031137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 475bcf6350e859a418182adea1088461, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  normalCollisions: 1
-  triggerCollisions: 1
-  tagsToCollect:
-  - Player
-  layersToCollect: []
-  dontCollectInputtingPlayer: 1
