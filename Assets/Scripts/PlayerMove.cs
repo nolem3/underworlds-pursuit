@@ -24,8 +24,8 @@ public class PlayerMove : MonoBehaviour
     private float moveInputX;
     private Vector3 movementDirection = new Vector3(-1.0f, 0f, 0f).normalized;
     [SerializeField] private GameObject droppedPrefab;
+    [SerializeField] private GameObject jumpPrefab;
     [SerializeField] private GameObject doubleJumpPrefab;
-    [SerializeField] private GameObject missilePrefab;
 
     void Start()
     {
@@ -65,7 +65,7 @@ public class PlayerMove : MonoBehaviour
             doubleJumped = false;
             rb.velocity = Vector2.zero;
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            Instantiate(doubleJumpPrefab, transform.position, doubleJumpPrefab.transform.rotation);
+            Instantiate(jumpPrefab, transform.position, jumpPrefab.transform.rotation);
         }
         else if (!grounded && !doubleJumped)
         {

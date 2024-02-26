@@ -48,6 +48,7 @@ MonoBehaviour:
   firePoint: {fileID: 7923691729950178579}
   bullet: {fileID: 6371860238775423487, guid: 3e598b5fb1af5444194347e656c57368, type: 3}
   shootEffect: {fileID: 3856115914339639973, guid: d60de419bcd72e74b99e8b80f13b27d6, type: 3}
+  timeBetweenShots: 0.3
 --- !u!1 &3253764922863184507
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,13 +447,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 6
   jumpForce: 10
-  doubleJumpForce: 10
+  doubleJumpForce: 11
   dropForce: 6
   dashDistance: 2
   dashSpeed: 5
   droppedPrefab: {fileID: 3677861665036064774, guid: 2ba2a5ef1d735874b8a273ce6df8b723, type: 3}
-  doubleJumpPrefab: {fileID: 3856115914339639973, guid: ee28455a5d41842458ae5c9db135b1ac, type: 3}
-  missilePrefab: {fileID: 4104287305709528719, guid: 2a61ef6ca2b69fd4cb77205188f7e127, type: 3}
+  jumpPrefab: {fileID: 3856115914339639973, guid: ee28455a5d41842458ae5c9db135b1ac, type: 3}
+  doubleJumpPrefab: {fileID: 3856115914339639973, guid: ad8c0141fb980a54086138d26f3a2101, type: 3}
 --- !u!58 &6072154100640733141
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -557,3 +558,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 4120337240879290084}
   propelVelocity: 15
+  lavaDamage: -1

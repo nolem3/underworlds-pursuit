@@ -167,7 +167,7 @@ MonoBehaviour:
   tagsToDamage:
   - Boss
   layersToDamage: []
-  healthChange: -1
+  healthChange: -5
   destroyOnDamage: 1
 --- !u!114 &-10236892947626636
 MonoBehaviour:

@@ -6,6 +6,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject bullet;
     [SerializeField] private GameObject shootEffect;
+    [SerializeField] private float timeBetweenShots = 0.3f;
     private Transform playerTransform;
     private Vector2 aimDirection;
     private float cooldown;
@@ -26,7 +27,7 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetButton("Fire1") && cooldown <= 0)
         {
             Shoot();
-            cooldown = 0.2f;
+            cooldown = timeBetweenShots;
         }
     }
     
