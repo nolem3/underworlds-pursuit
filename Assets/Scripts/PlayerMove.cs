@@ -22,6 +22,8 @@ public class PlayerMove : MonoBehaviour
     private bool canDash = true;
     private Vector3 toDashTo;
     private float moveInputX;
+    private float dashTimer = .2f;
+    private float currentTime;
     private Vector3 movementDirection = new Vector3(-1.0f, 0f, 0f).normalized;
     [SerializeField] private GameObject droppedPrefab;
     [SerializeField] private GameObject jumpPrefab;
@@ -34,11 +36,13 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
+        if(dashOver){
         moveInputX = Input.GetAxisRaw("Horizontal");
         MoveCheck();
         JumpCheck();
+        }
         dashCheck();
-
+        
         // Drop Ability 
         /* if (Input.GetKeyDown(KeyCode.S) && !grounded && !dropped)
         {
@@ -98,7 +102,7 @@ public class PlayerMove : MonoBehaviour
         {
             movementDirection = new Vector3(moveInputX, 0f, 0f).normalized;
         }
-        dashInput = Input.GetKeyDown(KeyCode.C);
+        dashInput = Input.GetKeyDown(KeyCode.LeftShift);
 
         if (!dashInput && canDash){
             return;
@@ -114,15 +118,18 @@ public class PlayerMove : MonoBehaviour
             dashOver = false;
             canDash = false;
 
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = 0f;
             rb.gravityScale = 0f;
+            currentTime = dashTimer;
             toDashTo = transform.position + (dashDistance * movementDirection);
         }
         else if(!dashOver)
         {
-            Debug.Log(transform.position + " Position");
-            Debug.Log(toDashTo + " To dash to");
             transform.position = Vector3.MoveTowards(transform.position, toDashTo, dashSpeed * Time.deltaTime);
-            if(Vector3.Distance(toDashTo, transform.position) < .01f)
+            currentTime -= Time.deltaTime;
+            Debug.Log(currentTime);
+            if(Vector3.Distance(toDashTo, transform.position) < .01f || currentTime <= 0) // || if the timer = 0
             {
                 rb.gravityScale = 2.0f;
                 dashOver = true;

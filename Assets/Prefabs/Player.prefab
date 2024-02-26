@@ -450,7 +450,7 @@ MonoBehaviour:
   doubleJumpForce: 11
   dropForce: 6
   dashDistance: 2
-  dashSpeed: 5
+  dashSpeed: 10
   droppedPrefab: {fileID: 3677861665036064774, guid: 2ba2a5ef1d735874b8a273ce6df8b723, type: 3}
   jumpPrefab: {fileID: 3856115914339639973, guid: ee28455a5d41842458ae5c9db135b1ac, type: 3}
   doubleJumpPrefab: {fileID: 3856115914339639973, guid: ad8c0141fb980a54086138d26f3a2101, type: 3}
