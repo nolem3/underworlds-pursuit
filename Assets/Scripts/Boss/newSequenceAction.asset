@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: newSequenceAction
   m_EditorClassIdentifier: 
   enterTime: 0.1
-  exitTime: 0.1
-  actions: []
+  exitTime: 0.6
+  actions:
+  - {fileID: 11400000, guid: b6d0776e581d7d84c83625bc0eecce63, type: 2}
+  - {fileID: 11400000, guid: b6d0776e581d7d84c83625bc0eecce63, type: 2}
+  - {fileID: 11400000, guid: b6d0776e581d7d84c83625bc0eecce63, type: 2}

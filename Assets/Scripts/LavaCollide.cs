@@ -25,6 +25,7 @@ public class LavaCollide : MonoBehaviour
         if (lavaInvulnerability) return;
         if (other.tag == "Lava")
         {
+            playerMove.TouchedLava();
             rb.velocity = new Vector2(rb.velocity.x, propelVelocity);
             myHealth.ChangeHealth(lavaDamage);
             StartCoroutine("LavaInvulnerabilityDelay");

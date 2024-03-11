@@ -18,7 +18,7 @@ MonoBehaviour:
   randomPositionMax: {x: -8, y: 3, z: 0}
   moveGivenTime: 1
   moveGivenSpeed: 0
-  moveTime: 0.2
-  moveSpeed: 0
-  minimumDistanceToMove: 1
-  maximumDistanceToMove: 3
+  moveTime: 0.15
+  moveSpeed: 17.761583
+  minimumDistanceToMove: 3
+  maximumDistanceToMove: 5

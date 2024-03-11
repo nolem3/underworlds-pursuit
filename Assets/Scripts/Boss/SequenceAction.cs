@@ -22,6 +22,18 @@ public class SequenceAction : BossAction
         currentIndex = -1;
     }
 
+    public override float GetEnterTime()
+    {
+        if (currentIndex < 0) return base.GetEnterTime();
+        return actions[currentIndex].GetEnterTime();
+    }
+
+    public override float GetExitTime()
+    {
+        if (currentIndex < 0) return base.GetExitTime();
+        return actions[currentIndex].GetExitTime();
+    }
+
     public bool Finished()
     {
         Debug.Log("SequenceAction Finished = " + (currentIndex == actions.Count - 1));

@@ -89,6 +89,13 @@ public class PlayerMove : MonoBehaviour
         } 
     }
 
+    public void TouchedLava()
+    {
+        doubleJumped = false;
+        canDash = true;
+        currentTime = 0;
+    }
+
     public float CurrentMoveInput()
     {
         return moveInputX;
