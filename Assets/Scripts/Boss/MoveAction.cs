@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "newMoveAction", menuName = "BossActions/MoveAction", order = 3)]
+[CreateAssetMenu(fileName = "newMoveAction", menuName = "BossActions/MoveAction", order = 2)]
 public class MoveAction : BossAction
 {
     [SerializeField] private Vector3 randomPositionMin = new Vector3(-1, -1, 0);
@@ -23,9 +23,9 @@ public class MoveAction : BossAction
         bossObject.GetComponent<BossController>().SetMoveData(moveGoalPos, moveSpeed);
     }
 
-    public override void StopAction()
+    public override void StopAction(GameObject bossObject)
     {
-        base.StopAction();
+        bossObject.GetComponent<BossController>().SetMoveData(bossObject.transform.position, 0);
     }
 
     private void FindGoalPos(GameObject bossObject)

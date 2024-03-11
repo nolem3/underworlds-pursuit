@@ -21,8 +21,5 @@ public abstract class BossAction : ScriptableObject
         return exitTime;
     }
 
-    public virtual void StopAction()
-    {
-
-    }
+    public abstract void StopAction(GameObject bossObject);
 }

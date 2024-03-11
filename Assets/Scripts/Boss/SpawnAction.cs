@@ -12,8 +12,8 @@ public class SpawnAction : BossAction
     {
         GameObject.Instantiate(prefab, bossObject.transform.position, prefab.transform.rotation);
     }
-    public override void StopAction()
+    public override void StopAction(GameObject bossObject)
     {
-        base.StopAction();
+        
     }
 }

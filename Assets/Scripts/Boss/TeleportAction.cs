@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "newTeleportAction", menuName = "BossActions/TeleportAction", order = 3)]
+[CreateAssetMenu(fileName = "newTeleportAction", menuName = "BossActions/TeleportAction", order = 4)]
 public class TeleportAction : BossAction
 {
     [SerializeField] private Vector3 randomPositionMin = new Vector3(-1, -1, 0);
@@ -16,8 +16,8 @@ public class TeleportAction : BossAction
             Random.Range(randomPositionMin.z, randomPositionMax.z));
     }
 
-    public override void StopAction()
+    public override void StopAction(GameObject bossObject)
     {
-        base.StopAction();
+        
     }
 }

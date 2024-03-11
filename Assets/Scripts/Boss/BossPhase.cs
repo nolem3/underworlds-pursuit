@@ -35,8 +35,8 @@ public class BossPhase : ScriptableObject
         return phaseChanges;
     }
 
-    public void StopAction()
+    public void StopAction(GameObject bossObject)
     {
-        if (currentAction != null) currentAction.StopAction();
+        if (currentAction != null) currentAction.StopAction(bossObject);
     }
 }
