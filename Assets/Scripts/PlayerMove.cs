@@ -128,7 +128,6 @@ public class PlayerMove : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, toDashTo, dashSpeed * Time.deltaTime);
             currentTime -= Time.deltaTime;
-            Debug.Log(currentTime);
             if(Vector3.Distance(toDashTo, transform.position) < .01f || currentTime <= 0) // || if the timer = 0
             {
                 rb.gravityScale = 2.0f;

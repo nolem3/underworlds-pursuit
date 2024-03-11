@@ -8,6 +8,27 @@ public class BossController : MonoBehaviour
     [SerializeField] private int startPhaseIndex = 0;
     private int currentPhaseIndex = 0;
     private BossPhase currentPhase;
+    private Vector3 moveGoalPos;
+    private float moveSpeed;
+
+    private void Start()
+    {
+        SetPhase(startPhaseIndex);
+        StartCoroutine("BossLoop");
+    }
+
+    /*private void Update()
+    {
+        
+    }*/
+
+    private void FixedUpdate()
+    {
+        if (transform.position != moveGoalPos)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, moveGoalPos, moveSpeed * Time.fixedDeltaTime);
+        }
+    }
 
     public void SetPhase(int given)
     {
@@ -29,12 +50,6 @@ public class BossController : MonoBehaviour
         }
         currentPhaseIndex = boss.GetPhases().IndexOf(phase);
         currentPhase = phase;
-    }
-
-    private void Start()
-    {
-        SetPhase(startPhaseIndex);
-        StartCoroutine("BossLoop");
     }
 
     private IEnumerator BossLoop()
@@ -62,5 +77,21 @@ public class BossController : MonoBehaviour
                 StartCoroutine("BossLoop");
             }
         }
+    }
+
+    public void SetMoveGoalPos(Vector3 goalPos)
+    {
+        moveGoalPos = goalPos;
+    }
+
+    public void SetMoveSpeed(float speed)
+    {
+        moveSpeed = speed;
+    }
+
+    public void SetMoveData(Vector3 goalPos, float speed)
+    {
+        SetMoveGoalPos(goalPos);
+        SetMoveSpeed(speed);
     }
 }

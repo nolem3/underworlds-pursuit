@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: newerSpawnAction
   m_EditorClassIdentifier: 
   enterTime: 0.1
-  exitTime: 0.5
+  exitTime: 0.2
   prefab: {fileID: 4104287305709528719, guid: 2a61ef6ca2b69fd4cb77205188f7e127, type: 3}
