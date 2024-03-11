@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LavaCollide : MonoBehaviour
 {
+    private PlayerMove playerMove;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float propelVelocity;
     private AHealth myHealth;
@@ -15,6 +16,8 @@ public class LavaCollide : MonoBehaviour
     {
         myHealth = GetComponent<AHealth>();
         if (myHealth == null) Debug.LogError("LavaCollide component is on a GameObject without an AHealth component!");
+        playerMove = GetComponent<PlayerMove>();
+        if (playerMove == null) Debug.LogError("LavaCollide component is on a GameObject without a PlayerMove component!");
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -22,7 +25,7 @@ public class LavaCollide : MonoBehaviour
         if (lavaInvulnerability) return;
         if (other.tag == "Lava")
         {
-            Debug.Log("Hit lava");
+            playerMove.TouchedLava();
             rb.velocity = new Vector2(rb.velocity.x, propelVelocity);
             myHealth.ChangeHealth(lavaDamage);
             StartCoroutine("LavaInvulnerabilityDelay");
