@@ -17,7 +17,7 @@ public class HealthSlider : AHealthTracker
         if (healthSlider.value <= 0 && gameObject.tag.Equals("Player"))
         {
             Debug.Log("Player dead");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         } 
     }
 }
