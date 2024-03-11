@@ -20,4 +20,6 @@ public abstract class BossAction : ScriptableObject
     {
         return exitTime;
     }
+
+    public abstract void StopAction(GameObject bossObject);
 }

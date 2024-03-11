@@ -7,6 +7,7 @@ public class BossPhase : ScriptableObject
 {
     [SerializeField] private List<BossAction> bossActions = new List<BossAction>();
     private BossAction currentAction;
+    [SerializeField] private List<BossPhaseChange> phaseChanges = new List<BossPhaseChange>();
 
     public BossAction DetermineNewAction()
     {
@@ -27,5 +28,15 @@ public class BossPhase : ScriptableObject
     public void DoCurrentAction(GameObject bossObject)
     {
         currentAction.DoAction(bossObject);
+    }
+
+    public List<BossPhaseChange> GetBossPhaseChanges()
+    {
+        return phaseChanges;
+    }
+
+    public void StopAction(GameObject bossObject)
+    {
+        if (currentAction != null) currentAction.StopAction(bossObject);
     }
 }

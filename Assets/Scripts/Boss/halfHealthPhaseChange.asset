@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51cfb1af5543c244cae90a62fd728e1c, type: 3}
-  m_Name: newSpawnAction
+  m_Script: {fileID: 11500000, guid: 8b71ff52dabcc7549aa4072a604d1953, type: 3}
+  m_Name: halfHealthPhaseChange
   m_EditorClassIdentifier: 
-  enterTime: 0.25
-  exitTime: 0.66
-  prefab: {fileID: 4104287305709528719, guid: 2a61ef6ca2b69fd4cb77205188f7e127, type: 3}
+  nextPhase: {fileID: 11400000, guid: efa3ffccdc5f5354ebc4bb127c9b0607, type: 2}
+  changeWhenBelowPercent: 0.5

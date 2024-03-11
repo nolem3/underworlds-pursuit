@@ -248,9 +248,10 @@ MonoBehaviour:
   breakPrefab: {fileID: 4863422508003031137, guid: 2ff236ce0fd0e4948a31c975768fd722, type: 3}
   xPosNegativeCausesBreak: 1
   xPosMin: -8
-  normalCollisions: 0
-  triggerCollisions: 0
-  tagsToBreak: []
+  normalCollisions: 1
+  triggerCollisions: 1
+  tagsToBreak:
+  - Boss
   layersToBreak: []
 --- !u!114 &-242117736636434960
 MonoBehaviour:
