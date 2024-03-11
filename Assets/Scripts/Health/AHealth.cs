@@ -6,12 +6,13 @@ public class AHealth : MonoBehaviour
 {
     [SerializeField] private int maxHealth;
     [SerializeField] private List<AHealthTracker> healthTrackers = new List<AHealthTracker>();
-    private int health;
+    private int health = 999999;
     private float healthRatio;
 
     private void Start()
     {
         health = maxHealth;
+        healthRatio = 1.0f;
     }
 
     public void ChangeHealth(int change)

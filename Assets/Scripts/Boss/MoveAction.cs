@@ -15,4 +15,9 @@ public class MoveAction : BossAction
             Random.Range(randomPositionMin.y, randomPositionMax.y),
             Random.Range(randomPositionMin.z, randomPositionMax.z));
     }
+
+    public override void StopAction()
+    {
+        base.StopAction();
+    }
 }

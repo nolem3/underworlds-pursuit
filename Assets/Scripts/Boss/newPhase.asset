@@ -15,3 +15,5 @@ MonoBehaviour:
   bossActions:
   - {fileID: 11400000, guid: 6b21593b6dfdf6a4fb5c3da7eff66eb4, type: 2}
   - {fileID: 11400000, guid: 8eaf0024561d30e439e68c5d3222808e, type: 2}
+  phaseChanges:
+  - {fileID: 11400000, guid: d39b452894f1da942a969b2bf90cc8e5, type: 2}

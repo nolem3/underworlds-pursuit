@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51cfb1af5543c244cae90a62fd728e1c, type: 3}
   m_Name: newSpawnAction
   m_EditorClassIdentifier: 
-  enterTime: 0.1
-  exitTime: 0.5
+  enterTime: 0.25
+  exitTime: 0.66
   prefab: {fileID: 4104287305709528719, guid: 2a61ef6ca2b69fd4cb77205188f7e127, type: 3}

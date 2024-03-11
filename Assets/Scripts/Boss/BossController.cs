@@ -11,8 +11,24 @@ public class BossController : MonoBehaviour
 
     public void SetPhase(int given)
     {
+        if (given < 0 || given > boss.GetPhases().Count)
+        {
+            Debug.LogError("SetPhase given out of range index: " + given + ", length of phases is " + boss.GetPhases().Count);
+            return;
+        }
         currentPhaseIndex = given;
         currentPhase = boss.GetPhases()[currentPhaseIndex];
+    }
+
+    public void SetPhase(BossPhase phase)
+    {
+        if (!boss.GetPhases().Contains(phase))
+        {
+            Debug.LogError("SetPhase given phase not in boss phases: " + phase);
+            return;
+        }
+        currentPhaseIndex = boss.GetPhases().IndexOf(phase);
+        currentPhase = phase;
     }
 
     private void Start()
@@ -25,8 +41,26 @@ public class BossController : MonoBehaviour
     {
         currentPhase.DetermineNewAction();
         yield return new WaitForSeconds(currentPhase.GetCurrentActionEnterTime());
+        PhaseChangeCheck();
         currentPhase.DoCurrentAction(this.gameObject);
         yield return new WaitForSeconds(currentPhase.GetCurrentActionExitTime());
+        PhaseChangeCheck();
         StartCoroutine("BossLoop");
+    }
+
+    private void PhaseChangeCheck()
+    {
+        if (currentPhase == null) return;
+
+        foreach (BossPhaseChange change in currentPhase.GetBossPhaseChanges())
+        {
+            if (change.ChangeConditionMet())
+            {
+                StopCoroutine("BossLoop");
+                currentPhase.StopAction();
+                SetPhase(change.GetNextPhase());
+                StartCoroutine("BossLoop");
+            }
+        }
     }
 }

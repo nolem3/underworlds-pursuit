@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b86309eb09bef24ca7a3ad73da91ce4, type: 3}
-  m_Name: newMoveAction
+  m_Name: newerMoveAction
   m_EditorClassIdentifier: 
-  enterTime: 0.25
-  exitTime: 0.66
+  enterTime: 0.1
+  exitTime: 0.5
   randomPositionMin: {x: -7, y: -3, z: 0}
   randomPositionMax: {x: -8, y: 3, z: 0}

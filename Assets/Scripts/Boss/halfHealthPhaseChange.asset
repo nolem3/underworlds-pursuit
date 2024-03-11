@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b86309eb09bef24ca7a3ad73da91ce4, type: 3}
-  m_Name: newMoveAction
+  m_Script: {fileID: 11500000, guid: 8b71ff52dabcc7549aa4072a604d1953, type: 3}
+  m_Name: halfHealthPhaseChange
   m_EditorClassIdentifier: 
-  enterTime: 0.25
-  exitTime: 0.66
-  randomPositionMin: {x: -7, y: -3, z: 0}
-  randomPositionMax: {x: -8, y: 3, z: 0}
+  nextPhase: {fileID: 11400000, guid: efa3ffccdc5f5354ebc4bb127c9b0607, type: 2}
+  healthScript: {fileID: 0}
+  changeWhenBelowPercent: 0.5
