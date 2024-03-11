@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51cfb1af5543c244cae90a62fd728e1c, type: 3}
-  m_Name: newSpawnAction
+  m_Name: missile
   m_EditorClassIdentifier: 
   enterTime: 0.25
   exitTime: 0.66

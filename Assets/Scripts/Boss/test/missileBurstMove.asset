@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79d94e3a1c190274399b400305d1b1ef, type: 3}
-  m_Name: newSequenceAction
+  m_Name: missileBurstMove
   m_EditorClassIdentifier: 
-  enterTime: 0.1
-  exitTime: 0.6
+  enterTime: 0.2
+  exitTime: 0.7
   actions:
   - {fileID: 11400000, guid: b6d0776e581d7d84c83625bc0eecce63, type: 2}
   - {fileID: 11400000, guid: b6d0776e581d7d84c83625bc0eecce63, type: 2}
   - {fileID: 11400000, guid: b6d0776e581d7d84c83625bc0eecce63, type: 2}
+  - {fileID: 11400000, guid: acfab8ef059ab944e9ae44702ed08a9e, type: 2}

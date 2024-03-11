@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51cfb1af5543c244cae90a62fd728e1c, type: 3}
-  m_Name: newerSpawnAction
+  m_Name: doubleMissile
   m_EditorClassIdentifier: 
-  enterTime: 0.15
-  exitTime: 0.15
+  enterTime: 0.3
+  exitTime: 0.3
   prefab: {fileID: 8796327510232484748, guid: 5ad5854a255415c4b89781028cfe7ef4, type: 3}
