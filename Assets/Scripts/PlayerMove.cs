@@ -69,7 +69,9 @@ public class PlayerMove : MonoBehaviour
             doubleJumped = false;
             rb.velocity = Vector2.zero;
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            Instantiate(jumpPrefab, transform.position, jumpPrefab.transform.rotation);
+            // Instantiate(jumpPrefab, transform.position, jumpPrefab.transform.rotation);
+            //  ^ See if it feels better to only have the particle effect when double jumping,
+            //       so you'll know when the double jump is used up.
         }
         else if (!grounded && !doubleJumped)
         {
