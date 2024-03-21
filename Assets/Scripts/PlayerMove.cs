@@ -28,6 +28,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private GameObject droppedPrefab;
     [SerializeField] private GameObject jumpPrefab;
     [SerializeField] private GameObject doubleJumpPrefab;
+    [SerializeField] private GameObject dashPrefab;
 
     void Start()
     {
@@ -132,6 +133,11 @@ public class PlayerMove : MonoBehaviour
             rb.gravityScale = 0f;
             currentTime = dashTimer;
             toDashTo = transform.position + (dashDistance * movementDirection);
+            
+            float rotationOffset = moveInputX > 0 ? 180 : 0;
+            Quaternion dashRotation = Quaternion.Euler(0, 0, 
+                        dashPrefab.transform.rotation.eulerAngles.z + rotationOffset);
+            Instantiate(dashPrefab, transform.position, dashRotation);
         }
         else if(!dashOver)
         {
