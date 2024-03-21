@@ -4843,6 +4843,7 @@ GameObject:
   - component: {fileID: 186158921805412148}
   - component: {fileID: -1249534724267288509}
   - component: {fileID: 4060286761491685430}
+  - component: {fileID: 3838761101680962796}
   m_Layer: 0
   m_Name: Missile
   m_TagString: Untagged
@@ -4997,3 +4998,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9, y: 1.8}
   m_EdgeRadius: 0
+--- !u!114 &3838761101680962796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4104287305709528719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee5ec80c679234b43a0d9d9ff30e1535, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seconds: 10
+  randomOffsetPlusOrMinus: 0
