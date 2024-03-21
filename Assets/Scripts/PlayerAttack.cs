@@ -65,12 +65,15 @@ public class PlayerAttack : MonoBehaviour
         Vector3 bulletPosition = new(transform.position.x + aimDirection.x, 
                                     transform.position.y + aimDirection.y, 
                                     transform.position.z);
-        GameObject projectile = Instantiate(bullet, bulletPosition, quaternion.identity);
+        float rotationOffset = isSpriteFlipped ? 180 : 0;
+        Quaternion bulletRotation = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z + rotationOffset);
+
+        GameObject projectile = Instantiate(bullet, bulletPosition, bulletRotation);
         Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
         if(projectileRb != null)
         {
             projectileRb.velocity = new Vector2(aimDirection.x, aimDirection.y) * projectileSpeed;
         }
-        if (shootEffect != null) Instantiate(shootEffect, transform.position, transform.rotation);
+        if (shootEffect != null) Instantiate(shootEffect, transform.position, bulletRotation);
     }
 }
