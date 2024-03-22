@@ -9,9 +9,15 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float moveSpeed = 1;
     [SerializeField] private float jumpForce = 12;
     [SerializeField] private float doubleJumpForce = 8;
+    [SerializeField] private float lavaBounceForce = 10;
     [SerializeField] private float dropForce = 6;
     [SerializeField] private float dashDistance = 2;
     [SerializeField] private float dashSpeed = 5;
+    [SerializeField] private float coyoteTime = 0.1f;
+    [SerializeField] private bool unparentSelfWhenJump = true;
+    [SerializeField] private bool ignoreGroundedWhenPositiveYVelocty = true;
+    private float coyoteTimer = 0;
+    [SerializeField, Range(0, -100)] private float gravity = -1f;
     private Rigidbody2D rb;
     private bool jumpInput;
     private bool grounded;
@@ -22,6 +28,7 @@ public class PlayerMove : MonoBehaviour
     private bool canDash = true;
     private Vector3 toDashTo;
     private float moveInputX;
+    private Vector3 velocity;
     private float dashTimer = .2f;
     private float currentTime;
     private Vector3 movementDirection = new Vector3(-1.0f, 0f, 0f).normalized;
@@ -37,13 +44,14 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        if(dashOver){
-        moveInputX = Input.GetAxisRaw("Horizontal");
-        MoveCheck();
-        JumpCheck();
+        if (coyoteTimer > 0) coyoteTimer -= Time.deltaTime;
+        if (dashOver)
+        {
+            MoveCheck();
+            JumpCheck();
         }
-        dashCheck();
-        
+        DashCheck();
+        transform.Translate(velocity * Time.deltaTime);
         // Drop Ability 
         /* if (Input.GetKeyDown(KeyCode.S) && !grounded && !dropped)
         {
@@ -56,38 +64,55 @@ public class PlayerMove : MonoBehaviour
 
     private void MoveCheck()
     {
-        transform.Translate(moveInputX * moveSpeed * Time.deltaTime * transform.right);
+        moveInputX = Input.GetAxisRaw("Horizontal");
+        velocity.x = moveInputX * moveSpeed;
     }
 
     private void JumpCheck()
     {
+        velocity.y += gravity * Time.deltaTime;
         jumpInput = Input.GetButtonDown("Jump");
-        if (!jumpInput) return;
-        if (grounded)
+        // if (!jumpInput) return;
+        if (grounded || coyoteTimer > 0)
         {
-            grounded = false;
-            dropped = false;
-            doubleJumped = false;
-            rb.velocity = Vector2.zero;
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            // Instantiate(jumpPrefab, transform.position, jumpPrefab.transform.rotation);
-            //  ^ See if it feels better to only have the particle effect when double jumping,
-            //       so you'll know when the double jump is used up.
+            if (jumpInput)
+            {
+                grounded = false;
+                coyoteTimer = 0;
+                dropped = false;
+                doubleJumped = false;
+                velocity.y = jumpForce;
+                if (unparentSelfWhenJump) transform.parent = null;
+                // rb.velocity = Vector2.zero;
+                // rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                // Instantiate(jumpPrefab, transform.position, jumpPrefab.transform.rotation);
+                //  ^ See if it feels better to only have the particle effect when double jumping,
+                //       so you'll know when the double jump is used up.
+            }
+            else
+            {
+                velocity.y = 0;
+                // moveThisFrame += new Vector3(0, Time.deltaTime * gravity, 0);
+            }
         }
-        else if (!grounded && !doubleJumped)
+        else if (!(grounded || coyoteTimer > 0) && !doubleJumped && jumpInput)
         {
             doubleJumped = true;
-            rb.velocity = Vector2.zero;
-            rb.AddForce(Vector2.up * doubleJumpForce, ForceMode2D.Impulse);
+            //rb.velocity = Vector2.zero;
+            //rb.AddForce(Vector2.up * doubleJumpForce, ForceMode2D.Impulse);
+            velocity.y = doubleJumpForce;
             Instantiate(doubleJumpPrefab, transform.position, doubleJumpPrefab.transform.rotation);
         }
     }
 
     public void SetGrounded(bool given)
     {
+        if (ignoreGroundedWhenPositiveYVelocty && velocity.y > 0) return;
         grounded = given;
+        coyoteTimer = 0;
         if (!given)
         {
+            coyoteTimer = coyoteTime;
             doubleJumped = given;
         } 
     }
@@ -97,6 +122,7 @@ public class PlayerMove : MonoBehaviour
         doubleJumped = false;
         canDash = true;
         currentTime = 0;
+        velocity.y = lavaBounceForce;
     }
 
     public float CurrentMoveInput()
@@ -105,7 +131,7 @@ public class PlayerMove : MonoBehaviour
     }
 
     //dash in straight line
-    private void dashCheck()
+    private void DashCheck()
     {
         Vector3 direction = new Vector3(moveInputX, 0f, 0f).normalized;
         if(direction != new Vector3(0f, 0f, 0f).normalized)
@@ -128,8 +154,9 @@ public class PlayerMove : MonoBehaviour
             dashOver = false;
             canDash = false;
 
+            velocity.y = 0;
             rb.velocity = Vector3.zero;
-            rb.angularVelocity = 0f;
+            //rb.angularVelocity = 0f;
             rb.gravityScale = 0f;
             currentTime = dashTimer;
             toDashTo = transform.position + (dashDistance * movementDirection);
@@ -145,14 +172,19 @@ public class PlayerMove : MonoBehaviour
             currentTime -= Time.deltaTime;
             if(Vector3.Distance(toDashTo, transform.position) < .01f || currentTime <= 0) // || if the timer = 0
             {
-                rb.gravityScale = 2.0f;
+                //rb.gravityScale = 2.0f;
                 dashOver = true;
             }
         }
-        else if(grounded && dashOver)
+        else if((grounded || coyoteTimer > 0) && dashOver)
         {
             canDash = true;
         }
+    }
+
+    public Vector3 GetVelocity()
+    {
+        return velocity;
     }
 }
  

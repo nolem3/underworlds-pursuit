@@ -270,7 +270,8 @@ MonoBehaviour:
   tagsToCollect:
   - Player
   layersToCollect: []
-  dontCollectInputtingPlayer: 1
+  dontCollectPositiveXInputPlayer: 1
+  dontCollectPositiveYVelocityPlayer: 1
 --- !u!61 &882960830603893583
 BoxCollider2D:
   m_ObjectHideFlags: 0

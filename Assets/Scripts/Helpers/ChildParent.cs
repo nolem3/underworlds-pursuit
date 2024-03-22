@@ -9,7 +9,8 @@ public class ChildParent : MonoBehaviour
     [SerializeField] private List<string> tagsToCollect = new List<string>();
     [SerializeField] private List<string> layersToCollect = new List<string>();
     private List<Transform> collectedChildren = new List<Transform>();
-    [SerializeField] private bool dontCollectInputtingPlayer = false;
+    [SerializeField] private bool dontCollectPositiveXInputPlayer = false;
+    [SerializeField] private bool dontCollectPositiveYVelocityPlayer = false;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -43,7 +44,24 @@ public class ChildParent : MonoBehaviour
 
     private void TryToCollect(Transform given)
     {
-        if (dontCollectInputtingPlayer)
+        if (dontCollectPositiveYVelocityPlayer)
+        {
+            PlayerMove playerMove = given.GetComponent<PlayerMove>();
+            if (playerMove != null)
+            {
+                if (playerMove.GetVelocity().y > 0.0f)
+                {
+                    if (collectedChildren.Contains(given))
+                    {
+                        given.SetParent(null);
+                        collectedChildren.Remove(given);
+                    }
+                    return;
+                }
+            }
+        }
+
+        if (dontCollectPositiveXInputPlayer)
         {
             PlayerMove playerMove = given.GetComponent<PlayerMove>();
             if (playerMove != null)
@@ -85,7 +103,21 @@ public class ChildParent : MonoBehaviour
     private void TryToUncollect(Transform given)
     {
         if (!collectedChildren.Contains(given)) return;
-        if (dontCollectInputtingPlayer)
+
+        if (dontCollectPositiveYVelocityPlayer)
+        {
+            PlayerMove playerMove = given.GetComponent<PlayerMove>();
+            if (playerMove != null)
+            {
+                if (playerMove.GetVelocity().y > 0.0f)
+                {
+                    given.SetParent(null);
+                    collectedChildren.Remove(given);
+                }
+            }
+        }
+
+        if (dontCollectPositiveXInputPlayer)
         {
             PlayerMove playerMove = given.GetComponent<PlayerMove>();
             if (playerMove != null)

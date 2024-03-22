@@ -6915,6 +6915,14 @@ PrefabInstance:
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 750063839}
+    - target: {fileID: 4120337240879290084, guid: 33b381542c00ef2469b1d40089ab05a1, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4120337240879290084, guid: 33b381542c00ef2469b1d40089ab05a1, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6127796986250446360, guid: 33b381542c00ef2469b1d40089ab05a1, type: 3}
       propertyPath: m_Name
       value: Player
