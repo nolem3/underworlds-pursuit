@@ -12,7 +12,7 @@ public class PlayerAttack : MonoBehaviour
     private float cooldown;
     private bool isSpriteFlipped = false;
 
-    private float projectileSpeed = 7.0f;
+    [SerializeField] private float projectileSpeed = 7.0f;
 
     void Start()
     {

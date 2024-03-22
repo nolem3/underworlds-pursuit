@@ -410,6 +410,7 @@ MonoBehaviour:
   maxHealth: 150
   healthTrackers:
   - {fileID: 205960425}
+  invulnerabilityTime: 0
 --- !u!58 &205960427
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1657,7 +1658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b8fd65c5b1c0424db1af943d8f1670d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  globalDistanceMovedBetweenSpawnsRange: {x: 10, y: 11}
+  globalDistanceMovedBetweenSpawnsRange: {x: 12, y: 15}
   prefabs:
   - {fileID: 5037467636498615107, guid: 355c6ee3343f18547854cae687699b73, type: 3}
   - {fileID: 5037467636498615107, guid: 1f3e1fef66b18ab44bd6dc78813859b3, type: 3}
@@ -6864,8 +6865,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 271493916125773749, guid: 33b381542c00ef2469b1d40089ab05a1, type: 3}
+      propertyPath: dashSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 271493916125773749, guid: 33b381542c00ef2469b1d40089ab05a1, type: 3}
       propertyPath: moveSpeed
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 271493916125773749, guid: 33b381542c00ef2469b1d40089ab05a1, type: 3}
+      propertyPath: dashDistance
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 2057113966319039562, guid: 33b381542c00ef2469b1d40089ab05a1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6915,14 +6924,6 @@ PrefabInstance:
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 750063839}
-    - target: {fileID: 4120337240879290084, guid: 33b381542c00ef2469b1d40089ab05a1, type: 3}
-      propertyPath: m_Interpolate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4120337240879290084, guid: 33b381542c00ef2469b1d40089ab05a1, type: 3}
-      propertyPath: m_GravityScale
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6127796986250446360, guid: 33b381542c00ef2469b1d40089ab05a1, type: 3}
       propertyPath: m_Name
       value: Player

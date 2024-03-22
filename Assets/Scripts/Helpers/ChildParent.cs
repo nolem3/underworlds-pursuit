@@ -49,7 +49,7 @@ public class ChildParent : MonoBehaviour
             PlayerMove playerMove = given.GetComponent<PlayerMove>();
             if (playerMove != null)
             {
-                if (playerMove.GetVelocity().y > 0.0f)
+                if (playerMove.GetVelocity().y > 0.1f)
                 {
                     if (collectedChildren.Contains(given))
                     {
@@ -79,7 +79,8 @@ public class ChildParent : MonoBehaviour
             }
         }
 
-        if (collectedChildren.Contains(given)) return;
+        // if (collectedChildren.Contains(given)) return;
+        if (collectedChildren.Contains(given) && given.parent != null) return;
         foreach (string tag in tagsToCollect)
         {
             if (given.CompareTag(tag))

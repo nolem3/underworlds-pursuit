@@ -16,16 +16,16 @@ public class PlayerGrounder : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Ground") playerMove.SetGrounded(true);
+        if (collision.gameObject.CompareTag("Ground")) playerMove.SetGrounded(true);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Ground") playerMove.SetGrounded(true);
+        if (collision.gameObject.CompareTag("Ground")) playerMove.SetGrounded(true);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Ground") playerMove.SetGrounded(false);
+        if (collision.gameObject.CompareTag("Ground")) playerMove.SetGrounded(false);
     }
 }

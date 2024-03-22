@@ -5934,6 +5934,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDir: {x: -0.2, y: 0}
+  moveDirRandomRange: {x: 0, y: 0}
 --- !u!212 &450018137
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6067,7 +6068,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &457352432
@@ -6118,6 +6119,7 @@ MonoBehaviour:
   bullet: {fileID: 6371860238775423487, guid: 3e598b5fb1af5444194347e656c57368, type: 3}
   shootEffect: {fileID: 0}
   timeBetweenShots: 0.1
+  projectileSpeed: 7
 --- !u!1 &500652663
 GameObject:
   m_ObjectHideFlags: 0
@@ -6164,6 +6166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDir: {x: -0.2, y: 0}
+  moveDirRandomRange: {x: 0, y: 0}
 --- !u!212 &500652666
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6262,6 +6265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDir: {x: -0.2, y: 0}
+  moveDirRandomRange: {x: 0, y: 0}
 --- !u!212 &535919488
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6360,6 +6364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDir: {x: -0.2, y: 0}
+  moveDirRandomRange: {x: 0, y: 0}
 --- !u!212 &546990120
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7037,6 +7042,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDir: {x: -0.2, y: 0}
+  moveDirRandomRange: {x: 0, y: 0}
 --- !u!212 &755565853
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7512,6 +7518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDir: {x: -0.2, y: 0}
+  moveDirRandomRange: {x: 0, y: 0}
 --- !u!212 &959949144
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7735,6 +7742,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDir: {x: -0.2, y: 0}
+  moveDirRandomRange: {x: 0, y: 0}
 --- !u!212 &1030835868
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8108,12 +8116,21 @@ MonoBehaviour:
   moveSpeed: 6
   jumpForce: 10
   doubleJumpForce: 10
+  lavaBounceForce: 10
   dropForce: 6
   dashDistance: 2
   dashSpeed: 5
+  coyoteTime: 0.1
+  unparentSelfWhenJump: 1
+  ignoreGroundedWhenPositiveYVelocty: 1
+  doubleTapTime: 0.2
+  doubleTapThreshold: 0.2
+  lastInputWasRight: 0
+  gravity: -1
   droppedPrefab: {fileID: 3677861665036064774, guid: 2ba2a5ef1d735874b8a273ce6df8b723, type: 3}
   jumpPrefab: {fileID: 0}
   doubleJumpPrefab: {fileID: 3856115914339639973, guid: ee28455a5d41842458ae5c9db135b1ac, type: 3}
+  dashPrefab: {fileID: 0}
 --- !u!212 &1178390661
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8384,6 +8401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDir: {x: -0.2, y: 0}
+  moveDirRandomRange: {x: 0, y: 0}
 --- !u!212 &1243984209
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8500,11 +8518,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b8fd65c5b1c0424db1af943d8f1670d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTimeRange: {x: 2.8, y: 2.8}
+  globalDistanceMovedBetweenSpawnsRange: {x: 4, y: 5.2}
   prefabs:
   - {fileID: 8670812587205752509, guid: b3d28d6455c107741848dc74617deb8f, type: 3}
   - {fileID: 8670812587205752509, guid: 4a4cce273832d9840abc2dac745c3d34, type: 3}
+  preventRepeats: 0
   spawnPos: {x: 13, y: -2}
+  spawnVariation: {x: 0, y: 1}
 --- !u!4 &1367999572
 Transform:
   m_ObjectHideFlags: 0
@@ -8723,14 +8743,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2578234893280605198, guid: 33b381542c00ef2469b1d40089ab05a1, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 2578234893280605198, guid: 33b381542c00ef2469b1d40089ab05a1, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.75
-      objectReference: {fileID: 0}
     - target: {fileID: 2578234893280605198, guid: 33b381542c00ef2469b1d40089ab05a1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -9300,6 +9312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDir: {x: -0.2, y: 0}
+  moveDirRandomRange: {x: 0, y: 0}
 --- !u!212 &1817834473
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9460,6 +9473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDir: {x: -0.2, y: 0}
+  moveDirRandomRange: {x: 0, y: 0}
 --- !u!212 &2025396968
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9620,6 +9634,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDir: {x: -0.2, y: 0}
+  moveDirRandomRange: {x: 0, y: 0}
 --- !u!212 &2069971924
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -16,6 +16,10 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float coyoteTime = 0.1f;
     [SerializeField] private bool unparentSelfWhenJump = true;
     [SerializeField] private bool ignoreGroundedWhenPositiveYVelocty = true;
+    [SerializeField] private float doubleTapTime = 0.2f;
+    [SerializeField] private float doubleTapThreshold = 0.2f;
+    private float doubleTapTimer = -1;
+    [SerializeField] private bool lastInputWasRight;
     private float coyoteTimer = 0;
     [SerializeField, Range(0, -100)] private float gravity = -1f;
     private Rigidbody2D rb;
@@ -36,14 +40,19 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private GameObject jumpPrefab;
     [SerializeField] private GameObject doubleJumpPrefab;
     [SerializeField] private GameObject dashPrefab;
+    [SerializeField] private GameObject doubleJumpIcon;
+    [SerializeField] private GameObject dashIcon;
 
     void Start()
     {
+        doubleJumpIcon.SetActive(true);
+        dashIcon.SetActive(true);
         rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
+        if (doubleTapTimer < doubleTapTime && doubleTapTimer >= 0) doubleTapTimer += Time.deltaTime;
         if (coyoteTimer > 0) coyoteTimer -= Time.deltaTime;
         if (dashOver)
         {
@@ -52,6 +61,7 @@ public class PlayerMove : MonoBehaviour
         }
         DashCheck();
         transform.Translate(velocity * Time.deltaTime);
+        UpdateIcons();
         // Drop Ability 
         /* if (Input.GetKeyDown(KeyCode.S) && !grounded && !dropped)
         {
@@ -66,6 +76,17 @@ public class PlayerMove : MonoBehaviour
     {
         moveInputX = Input.GetAxisRaw("Horizontal");
         velocity.x = moveInputX * moveSpeed;
+        doubleTapTimer = -1;
+        /*if (lastInputWasRight && moveInputX < -1 * doubleTapThreshold || !lastInputWasRight && moveInputX > doubleTapThreshold)
+        {
+            doubleTapTimer = -1;
+        }
+        else if (doubleTapTimer < 0)
+        {
+            doubleTapTimer = 0;
+        }
+        if (moveInputX > 0) lastInputWasRight = true;
+        else if (moveInputX < 0) lastInputWasRight = false;*/
     }
 
     private void JumpCheck()
@@ -117,6 +138,11 @@ public class PlayerMove : MonoBehaviour
         } 
     }
 
+    public bool GetGrounded()
+    {
+        return grounded;
+    }
+
     public void TouchedLava()
     {
         doubleJumped = false;
@@ -138,8 +164,7 @@ public class PlayerMove : MonoBehaviour
         {
             movementDirection = new Vector3(moveInputX, 0f, 0f).normalized;
         }
-        dashInput = Input.GetKeyDown(KeyCode.LeftShift);
-
+        dashInput = Input.GetKeyDown(KeyCode.LeftShift) || (doubleTapTimer > 0 && doubleTapTimer < doubleTapThreshold && (moveInputX > doubleTapThreshold && lastInputWasRight || moveInputX < -1 * doubleTapThreshold && !lastInputWasRight));
         if (!dashInput && canDash){
             return;
         }
@@ -151,6 +176,7 @@ public class PlayerMove : MonoBehaviour
         //when is the dash over? when the player hits the target position
         if(canDash)
         {
+            doubleTapTimer = -1;
             dashOver = false;
             canDash = false;
 
@@ -180,6 +206,12 @@ public class PlayerMove : MonoBehaviour
         {
             canDash = true;
         }
+    }
+
+    private void UpdateIcons()
+    {
+        doubleJumpIcon.SetActive(!doubleJumped || grounded);
+        dashIcon.SetActive(canDash);
     }
 
     public Vector3 GetVelocity()
