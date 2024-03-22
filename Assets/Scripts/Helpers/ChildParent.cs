@@ -48,7 +48,8 @@ public class ChildParent : MonoBehaviour
             PlayerMove playerMove = given.GetComponent<PlayerMove>();
             if (playerMove != null)
             {
-                if (Mathf.Abs(playerMove.CurrentMoveInput()) > 0.1f)
+                //if (Mathf.Abs(playerMove.CurrentMoveInput()) > 0.1f)
+                if (playerMove.CurrentMoveInput() > 0.1f)
                 {
                     if (collectedChildren.Contains(given))
                     {
@@ -89,7 +90,8 @@ public class ChildParent : MonoBehaviour
             PlayerMove playerMove = given.GetComponent<PlayerMove>();
             if (playerMove != null)
             {
-                if (Mathf.Abs(playerMove.CurrentMoveInput()) > 0.1f)
+                //if (Mathf.Abs(playerMove.CurrentMoveInput()) > 0.1f)
+                if (playerMove.CurrentMoveInput() > 0.1f)
                 {
                     given.SetParent(null);
                     collectedChildren.Remove(given);
