@@ -1663,7 +1663,7 @@ MonoBehaviour:
   - {fileID: 5037467636498615107, guid: 1f3e1fef66b18ab44bd6dc78813859b3, type: 3}
   - {fileID: 5037467636498615107, guid: a253c9df8d9e2774487c9b02674f0a53, type: 3}
   preventRepeats: 1
-  spawnPos: {x: 13, y: -1}
+  spawnPos: {x: 13, y: 0}
   spawnVariation: {x: 2, y: 1}
 --- !u!1 &904547832
 GameObject:
@@ -6865,7 +6865,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 271493916125773749, guid: 33b381542c00ef2469b1d40089ab05a1, type: 3}
       propertyPath: moveSpeed
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2057113966319039562, guid: 33b381542c00ef2469b1d40089ab05a1, type: 3}
       propertyPath: m_LocalPosition.x

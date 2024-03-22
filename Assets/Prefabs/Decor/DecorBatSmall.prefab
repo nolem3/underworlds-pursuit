@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 141349901459789170}
   - component: {fileID: 6596282433172808414}
+  - component: {fileID: -3563128964762631690}
   m_Layer: 0
   m_Name: DecorBatSmall
   m_TagString: Untagged
@@ -45,7 +46,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a4827e415659514aba9778a185e5c92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDir: {x: -0.5, y: 0}
+  moveDir: {x: -1, y: 0}
+  moveDirRandomRange: {x: 0.15, y: 0}
+--- !u!114 &-3563128964762631690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200977310433577665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee5ec80c679234b43a0d9d9ff30e1535, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seconds: 30
+  randomOffsetPlusOrMinus: 0
 --- !u!1 &1426351919424985869
 GameObject:
   m_ObjectHideFlags: 0

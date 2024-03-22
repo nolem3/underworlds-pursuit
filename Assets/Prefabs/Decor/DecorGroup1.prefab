@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee5ec80c679234b43a0d9d9ff30e1535, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seconds: 15
+  seconds: 25
   randomOffsetPlusOrMinus: 0
 --- !u!1001 &572392224784458761
 PrefabInstance:

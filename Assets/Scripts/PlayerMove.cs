@@ -164,7 +164,7 @@ public class PlayerMove : MonoBehaviour
             float rotationOffset = moveInputX > 0 ? 180 : 0;
             Quaternion dashRotation = Quaternion.Euler(0, 0, 
                         dashPrefab.transform.rotation.eulerAngles.z + rotationOffset);
-            Instantiate(dashPrefab, transform.position, dashRotation);
+            Instantiate(dashPrefab, transform.position, dashRotation, transform).GetComponent<ParticleSystem>();
         }
         else if(!dashOver)
         {
