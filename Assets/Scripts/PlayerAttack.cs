@@ -7,6 +7,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private GameObject bullet;
     [SerializeField] private GameObject shootEffect;
     [SerializeField] private float timeBetweenShots = 0.3f;
+    [SerializeField] private AudioSource gunShotSound;
     private Transform playerTransform;
     private Vector2 aimDirection;
     private float cooldown;
@@ -69,6 +70,7 @@ public class PlayerAttack : MonoBehaviour
         Quaternion bulletRotation = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z + rotationOffset);
 
         GameObject projectile = Instantiate(bullet, bulletPosition, bulletRotation);
+        gunShotSound.Play();
         Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
         if(projectileRb != null)
         {

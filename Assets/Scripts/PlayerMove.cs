@@ -42,6 +42,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private GameObject dashPrefab;
     [SerializeField] private GameObject doubleJumpIcon;
     [SerializeField] private GameObject dashIcon;
+    [SerializeField] private AudioSource jumpSound;
 
     void Start()
     {
@@ -103,6 +104,7 @@ public class PlayerMove : MonoBehaviour
                 dropped = false;
                 doubleJumped = false;
                 velocity.y = jumpForce;
+                jumpSound.Play();
                 if (unparentSelfWhenJump) transform.parent = null;
                 // rb.velocity = Vector2.zero;
                 // rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
@@ -122,6 +124,7 @@ public class PlayerMove : MonoBehaviour
             //rb.velocity = Vector2.zero;
             //rb.AddForce(Vector2.up * doubleJumpForce, ForceMode2D.Impulse);
             velocity.y = doubleJumpForce;
+            jumpSound.Play();
             Instantiate(doubleJumpPrefab, transform.position, doubleJumpPrefab.transform.rotation);
         }
     }
