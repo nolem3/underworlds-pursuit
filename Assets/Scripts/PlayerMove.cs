@@ -61,7 +61,18 @@ public class PlayerMove : MonoBehaviour
             JumpCheck();
         }
         DashCheck();
-        transform.Translate(velocity * Time.deltaTime);
+
+        RaycastHit2D[] rays = new RaycastHit2D[1];
+        if (velocity.magnitude * Time.deltaTime >= 0.1f && rb.Cast(velocity, rays, velocity.magnitude * Time.deltaTime * 1f) > 0)
+        {
+            Debug.Log("Potential collision miss!");
+            transform.Translate(velocity * Time.deltaTime * (rays[0].distance / velocity.magnitude * Time.deltaTime) + velocity.normalized * Time.deltaTime * 0);
+        }
+        else
+        {
+            transform.Translate(velocity * Time.deltaTime);
+        }
+        // transform.Translate(velocity * Time.deltaTime);
         UpdateIcons();
         // Drop Ability 
         /* if (Input.GetKeyDown(KeyCode.S) && !grounded && !dropped)
@@ -71,6 +82,11 @@ public class PlayerMove : MonoBehaviour
             rb.AddForce(Vector2.down * dropForce, ForceMode2D.Impulse);
             Instantiate(droppedPrefab, transform.position, droppedPrefab.transform.rotation);
         } */
+        if (transform.position.y < -100)
+        {
+            Debug.Log("Player out of bounds? Y Position below -100. Killing player.");
+            GetComponent<AHealth>().ChangeHealth(-999);
+        }
     }
 
     private void MoveCheck()
@@ -104,6 +120,7 @@ public class PlayerMove : MonoBehaviour
                 dropped = false;
                 doubleJumped = false;
                 velocity.y = jumpForce;
+                jumpSound.pitch = 1;
                 jumpSound.Play();
                 if (unparentSelfWhenJump) transform.parent = null;
                 // rb.velocity = Vector2.zero;
@@ -124,6 +141,7 @@ public class PlayerMove : MonoBehaviour
             //rb.velocity = Vector2.zero;
             //rb.AddForce(Vector2.up * doubleJumpForce, ForceMode2D.Impulse);
             velocity.y = doubleJumpForce;
+            jumpSound.pitch = 1.5f;
             jumpSound.Play();
             Instantiate(doubleJumpPrefab, transform.position, doubleJumpPrefab.transform.rotation);
         }
@@ -194,6 +212,8 @@ public class PlayerMove : MonoBehaviour
             Quaternion dashRotation = Quaternion.Euler(0, 0, 
                         dashPrefab.transform.rotation.eulerAngles.z + rotationOffset);
             Instantiate(dashPrefab, transform.position, dashRotation, transform).GetComponent<ParticleSystem>();
+            jumpSound.pitch = 0.5f;
+            jumpSound.Play();
         }
         else if(!dashOver)
         {
@@ -220,6 +240,14 @@ public class PlayerMove : MonoBehaviour
     public Vector3 GetVelocity()
     {
         return velocity;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (velocity.y > 0 && collision.gameObject.CompareTag("Platform"))
+        {
+            Physics2D.IgnoreCollision(collision.collider, gameObject.GetComponent<Collider2D>());
+        }
     }
 }
  
