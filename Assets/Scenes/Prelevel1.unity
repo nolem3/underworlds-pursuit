@@ -541,6 +541,7 @@ MonoBehaviour:
   dashPrefab: {fileID: 0}
   doubleJumpIcon: {fileID: 0}
   dashIcon: {fileID: 0}
+  jumpSound: {fileID: 0}
 --- !u!212 &342070028
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1285,8 +1286,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281203967
+  m_fontColor: {r: 1, g: 0.98750395, b: 0.1745283, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1434,7 +1435,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &927941073
@@ -2326,6 +2327,7 @@ MonoBehaviour:
   bullet: {fileID: 6371860238775423487, guid: 3e598b5fb1af5444194347e656c57368, type: 3}
   shootEffect: {fileID: 0}
   timeBetweenShots: 0.3
+  gunShotSound: {fileID: 0}
   projectileSpeed: 7
 --- !u!1001 &1744393864
 PrefabInstance:
@@ -2616,8 +2618,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4294947117
+  m_fontColor: {r: 0.1745283, g: 0.69407094, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
