@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2300987060416829504}
   - component: {fileID: 2642909444053051177}
   m_Layer: 6
-  m_Name: Square
+  m_Name: Ground
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 2354762076632084376}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.49528, z: 0}
-  m_LocalScale: {x: 0.98718756, y: 0.009375, z: 1}
+  m_LocalPosition: {x: 0, y: 0.2217, z: 0}
+  m_LocalScale: {x: 0.98718756, y: 0.55655235, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1875331723286777443}
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: -3846838930396788812}
   m_Layer: 6
   m_Name: Platform
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -233,6 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDir: {x: -0.7, y: 0}
+  moveDirRandomRange: {x: 0, y: 0}
 --- !u!114 &2637279664027927417
 MonoBehaviour:
   m_ObjectHideFlags: 0
