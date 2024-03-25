@@ -8,6 +8,12 @@ public class BossPhase : ScriptableObject
     [SerializeField] private List<BossAction> bossActions = new List<BossAction>();
     private BossAction currentAction;
     [SerializeField] private List<BossPhaseChange> phaseChanges = new List<BossPhaseChange>();
+    [SerializeField] private float globalMoveSpeed = 4;
+
+    public void StartPhase()
+    {
+        GlobalMove.globalSpeed = globalMoveSpeed;
+    }
 
     public BossAction DetermineNewAction()
     {

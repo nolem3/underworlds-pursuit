@@ -51,6 +51,7 @@ public class BossController : MonoBehaviour
         }
         currentPhaseIndex = boss.GetPhases().IndexOf(phase);
         currentPhase = phase;
+        phase.StartPhase();
     }
 
     private IEnumerator BossLoop()
@@ -81,6 +82,7 @@ public class BossController : MonoBehaviour
                 StopCoroutine("BossLoop");
                 StopCoroutine("SequenceActionLoop");
                 currentPhase.StopAction(this.gameObject);
+                change.PhaseChangeEffect();
                 SetPhase(change.GetNextPhase());
                 StartCoroutine("BossLoop");
             }

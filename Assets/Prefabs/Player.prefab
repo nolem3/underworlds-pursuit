@@ -717,13 +717,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 6
-  jumpForce: 8
-  doubleJumpForce: 10
+  jumpForce: 9
+  doubleJumpForce: 11
   lavaBounceForce: 15
   dropForce: 6
   dashDistance: 2
-  dashSpeed: 10
-  coyoteTime: 0.05
+  dashSpeed: 20
+  coyoteTime: 0.1
   unparentSelfWhenJump: 1
   ignoreGroundedWhenPositiveYVelocty: 1
   doubleTapTime: 0.2
@@ -752,7 +752,7 @@ MonoBehaviour:
   maxHealth: 3
   healthTrackers:
   - {fileID: 3352701890150372670}
-  invulnerabilityTime: 0
+  invulnerabilityTime: 0.3
 --- !u!114 &3352701890150372670
 MonoBehaviour:
   m_ObjectHideFlags: 0

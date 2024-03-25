@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: halfHealthPhaseChange
   m_EditorClassIdentifier: 
   nextPhase: {fileID: 11400000, guid: efa3ffccdc5f5354ebc4bb127c9b0607, type: 2}
+  temp: 1
   changeWhenBelowPercent: 0.5
